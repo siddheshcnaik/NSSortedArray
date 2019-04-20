@@ -101,6 +101,27 @@
                                              count:len];
 }
 
+-(BOOL)find:(id) object {
+    
+    int x = 0;
+    int y = (int)self.array.count - 1;
+    while(x <= y) {
+        int center = (x + y)/2;
+        NSComparisonResult result = self.compareFunction(self.array[center], object);
+        if (result == NSOrderedSame) {
+            //Found it
+            return true;
+        }
+        if (result == NSOrderedDescending) {
+            x = center + 1;
+        }
+        else {
+            y = center - 1;
+        }
+    }
+    return NO;
+}
+
 -(NSString *)description {
     NSMutableString *log = [NSMutableString new];
     for (id c in self.array) {

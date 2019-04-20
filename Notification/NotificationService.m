@@ -61,12 +61,11 @@
         [n updateTimestamp];
         [store insert:n];
     }
-    {
-        Notification *n = [[Notification alloc] initWith:@"com.apple.phone1" msg:@"msg"];
-        [n updateTimestamp];
-        [store insert:n];
-    }
-    NSLog(@"%@", store);
+    Notification *n = [[Notification alloc] initWith:@"com.apple.phone1" msg:@"msg"];
+    [n updateTimestamp];
+    [store insert:n];
+    BOOL isPresent = [store find:n];
+    NSLog(@"%@ %@", store, isPresent ? @"YES" : @"NO");
 }
 
 @end

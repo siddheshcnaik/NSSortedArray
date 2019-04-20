@@ -17,6 +17,7 @@ typedef NSComparisonResult(^Compare)(ObjectType a, ObjectType b);
 -(void)insert:(ObjectType)object;
 -(ObjectType)getnext;
 -(ObjectType)removenext;
+-(BOOL)find:(ObjectType) object;
 @end
 
 NS_ASSUME_NONNULL_END
