@@ -15,8 +15,8 @@ typedef NSComparisonResult(^Compare)(ObjectType a, ObjectType b);
 @property (copy)Compare compareFunction;
 
 -(void)insert:(ObjectType)object;
--(ObjectType)getnext;
--(ObjectType)removenext;
+-(ObjectType)getRoot;
+-(ObjectType)removeRoot;
 -(BOOL)find:(ObjectType) object;
 @end
 

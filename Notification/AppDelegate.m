@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "NotificationService.h"
+#import "TestNSSortedArray.h"
 
 @interface AppDelegate ()
 
@@ -18,7 +18,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    [NotificationService test];
+    [TestNSSortedArray test];
     return YES;
 }
 

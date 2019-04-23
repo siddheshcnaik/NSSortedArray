@@ -23,48 +23,33 @@
 }
 
 -(NSUInteger)leftLeafIndex:(NSUInteger)rootIndex {
-    NSUInteger heapIndex = rootIndex+1;
-    return heapIndex*2-1;
+    return (rootIndex*2) + 1;
 }
 
 -(NSUInteger)rightLeafIndex:(NSUInteger)rootIndex {
-    NSUInteger heapIndex = rootIndex+1;
-    return heapIndex*2+1-1;
+    return (rootIndex*2)+2;
 }
 
 -(NSUInteger)heapLastIndex {
     return self.array.count - 1;
 }
 
--(void)heapify:(NSUInteger) indexRoot {
-    if([self leftLeafIndex:indexRoot] > [self heapLastIndex]){
-        return;
-    }
+-(void)heapify:(NSUInteger)indexRoot {
+    NSUInteger lastIndex = [self heapLastIndex];
     NSUInteger leftIndex = [self leftLeafIndex:indexRoot];
     NSUInteger rightIndex = [self rightLeafIndex:indexRoot];
-    NSUInteger lastIndex = [self heapLastIndex];
+    NSUInteger largestIndex = indexRoot;
     
-    id root = self.array[indexRoot];
-    NSUInteger smallestIndex = indexRoot;
-    id smallest = root;
-    
-    id left = self.array[leftIndex];
-    
-    if(self.compareFunction(left, root) == NSOrderedDescending) {
-        smallestIndex = leftIndex;
-        smallest = left;
+    if((leftIndex < lastIndex) && self.compareFunction(self.array[indexRoot], self.array[leftIndex]) == NSOrderedAscending) {
+        largestIndex = leftIndex;
     }
-    if(rightIndex <= lastIndex){
-        id right = self.array[rightIndex];
-        if(self.compareFunction(right, smallest) == NSOrderedDescending) {
-            smallest = right;
-            smallestIndex = rightIndex;
-        }
+    if ((rightIndex < lastIndex) && self.compareFunction(self.array[largestIndex], self.array[rightIndex]) == NSOrderedAscending) {
+        largestIndex = rightIndex;
     }
     
-    if(smallestIndex != indexRoot){
-        [self.array exchangeObjectAtIndex:indexRoot withObjectAtIndex:smallestIndex];
-        [self heapify:smallestIndex];
+    if (largestIndex != indexRoot) {
+        [self.array exchangeObjectAtIndex:largestIndex withObjectAtIndex:indexRoot];
+        [self heapify:largestIndex];
     }
 }
 
@@ -76,12 +61,25 @@
     }
 }
 
+-(void)sort{
+    if(self.array.count<2) return;
+    NSMutableArray* sortedA = [NSMutableArray new];
+    for (int i = (int)self.array.count -1 ; i > 0; i--) {
+        [sortedA insertObject:self.array[0] atIndex:0];
+        [self.array exchangeObjectAtIndex:0 withObjectAtIndex:self.array.count-1];
+        [self.array removeLastObject];
+        [self heapify:0];
+    }
+    [sortedA insertObject:self.array[0] atIndex:0];
+    self.array = sortedA.mutableCopy;
+}
+
 -(void)insert:(id)object {
     [self.array insertObject:object atIndex:0];
     [self buildHeap];
 }
 
--(id)removenext {
+-(id)removeRoot {
     id top = self.array.firstObject;
     [self.array exchangeObjectAtIndex:0 withObjectAtIndex:[self heapLastIndex]];
     [self heapify:0];
@@ -89,43 +87,44 @@
     return top;
 }
 
--(id)getnext {
+-(id)getRoot {
     return self.array.firstObject;
 }
 
 - (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state
                                   objects:(id __unsafe_unretained [])buffer
                                     count:(NSUInteger)len {
+    [self sort];
     return [self.array countByEnumeratingWithState:state
                                            objects:buffer
                                              count:len];
 }
 
--(BOOL)find:(id) object {
-    
-    int x = 0;
-    int y = (int)self.array.count - 1;
-    while(x <= y) {
-        int center = (x + y)/2;
-        NSComparisonResult result = self.compareFunction(self.array[center], object);
-        if (result == NSOrderedSame) {
-            //Found it
-            return true;
-        }
-        if (result == NSOrderedDescending) {
-            x = center + 1;
-        }
-        else {
-            y = center - 1;
-        }
+-(BOOL)find:(id)object root:(NSUInteger)root {
+    NSUInteger lastIndex = [self heapLastIndex];
+    if (root > lastIndex) {
+        return NO;
     }
-    return NO;
+    NSUInteger leftIndex = [self leftLeafIndex:root];
+    NSUInteger rightIndex = [self rightLeafIndex:root];
+    
+    NSComparisonResult result = self.compareFunction(self.array[root], object);
+    if (result == NSOrderedSame) {
+        return YES;
+    }
+    else {
+        return [self find:object root:rightIndex] || [self find:object root:leftIndex];
+    }
+}
+
+-(BOOL)find:(id)object {
+    return [self find:object root:0];
 }
 
 -(NSString *)description {
     NSMutableString *log = [NSMutableString new];
     for (id c in self.array) {
-        [log appendFormat:@"%@ \n", c];
+        [log appendFormat:@"\n%@", c];
     }
     return log;
 }

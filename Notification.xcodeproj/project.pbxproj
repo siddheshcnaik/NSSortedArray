@@ -14,7 +14,7 @@
 		7274D918225ED1E600106E19 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7274D917225ED1E600106E19 /* Assets.xcassets */; };
 		7274D91B225ED1E600106E19 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7274D919225ED1E600106E19 /* LaunchScreen.storyboard */; };
 		7274D91E225ED1E600106E19 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7274D91D225ED1E600106E19 /* main.m */; };
-		7274D926225ED20000106E19 /* NotificationService.m in Sources */ = {isa = PBXBuildFile; fileRef = 7274D925225ED20000106E19 /* NotificationService.m */; };
+		7278CA1E226D818700AEFF55 /* TestNSSortedArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 7278CA1D226D818700AEFF55 /* TestNSSortedArray.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,8 +30,8 @@
 		7274D91A225ED1E600106E19 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7274D91C225ED1E600106E19 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7274D91D225ED1E600106E19 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		7274D924225ED20000106E19 /* NotificationService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationService.h; sourceTree = "<group>"; };
-		7274D925225ED20000106E19 /* NotificationService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotificationService.m; sourceTree = "<group>"; };
+		7278CA1C226D818700AEFF55 /* TestNSSortedArray.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestNSSortedArray.h; sourceTree = "<group>"; };
+		7278CA1D226D818700AEFF55 /* TestNSSortedArray.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestNSSortedArray.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,10 +73,10 @@
 				7274D919225ED1E600106E19 /* LaunchScreen.storyboard */,
 				7274D91C225ED1E600106E19 /* Info.plist */,
 				7274D91D225ED1E600106E19 /* main.m */,
-				7274D924225ED20000106E19 /* NotificationService.h */,
-				7274D925225ED20000106E19 /* NotificationService.m */,
 				722AC18122683E3E00943DB1 /* NSSortedArray.h */,
 				722AC18222683E3E00943DB1 /* NSSortedArray.m */,
+				7278CA1C226D818700AEFF55 /* TestNSSortedArray.h */,
+				7278CA1D226D818700AEFF55 /* TestNSSortedArray.m */,
 			);
 			path = Notification;
 			sourceTree = "<group>";
@@ -151,7 +151,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7274D926225ED20000106E19 /* NotificationService.m in Sources */,
+				7278CA1E226D818700AEFF55 /* TestNSSortedArray.m in Sources */,
 				7274D913225ED1E500106E19 /* ViewController.m in Sources */,
 				7274D91E225ED1E600106E19 /* main.m in Sources */,
 				722AC18322683E3E00943DB1 /* NSSortedArray.m in Sources */,
